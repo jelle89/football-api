@@ -28,12 +28,12 @@ router.post(
 
 router.put('/team/:id', function (request, response) {
     const id = request.params.id
-    response.json({ message: `Update team ${id}` })
-  })
 
-  Team.update({
-      name: 'lol'},
-      { where: {}}).then(team => console.log(`The team with ID ${team.id} is now updated`))
-  
+    Team
+    .findByPk(id)
+    .then(teams => teams.update(request.body))
+    .then(teams => response.send(teams))
+    .catch(error => next(error))
+  })
 
 module.exports = router
