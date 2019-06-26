@@ -11,4 +11,12 @@ router.get(
     .catch(error => next(error))
 )
 
+router.post(
+    '/team',
+    (request, response, next) => Team
+    .create(request.body)
+    .then(teams => response.json(teams))
+    .catch(error => next(error))
+)
+
 module.exports = router
