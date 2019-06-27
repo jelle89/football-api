@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+
 const Team = db.define(
     'team',
     {
@@ -10,5 +11,6 @@ const Team = db.define(
         }
     }
 )
+
 
 module.exports = Team

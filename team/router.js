@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const Team = require('./model')
+const Player = require('../player/model')
 
 const router = new Router()
 
@@ -13,9 +14,10 @@ router.get(
 
 router.get('/team/:id', function (request, response, next) {
     const id = request.params.id
-    Team.findByPk().then(teams => {
-      response.json({ message: `Read team ${id}` })
-    })
+    Team
+    .findByPk(id)
+    .then(teams => response.send(teams))
+    .catch(error => next(error))
   })
 
 router.post(
